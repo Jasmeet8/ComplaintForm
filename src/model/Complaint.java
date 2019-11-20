@@ -3,9 +3,8 @@ package model;
 public class Complaint {
     private String name, email, phone,complaint;
     Complaint(){
-
     }
-    Complaint(String name,String email,String phone,String complaint){
+    public Complaint(String name, String email, String phone, String complaint){
         this.name=name;
         this.phone=phone;
         this.email=email;
