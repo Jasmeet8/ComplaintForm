@@ -20,7 +20,7 @@
   <textarea name="complaint" rows="10" cols="10">Please enter your complaint</textarea>
   Attachment: <INPUT TYPE="file" NAME="attachedfile" MAXLENGTH=50  >
 
-  <img src=?/CaptchaDisplay">
+  <img src=/CaptchaDisplay">
   <br>
   Please enter fruit name in image :<br>
   <select id="fruit">

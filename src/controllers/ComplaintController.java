@@ -33,10 +33,18 @@ public class ComplaintController extends HttpServlet {
 		SessionBean bean=new SessionBean();
 		bean.setAnswerText(fruit);
 		request.setAttribute("bean",bean);
-		RequestDispatcher rd;
+
 
 		//get captcha from  session,
-
+		Captcha captchaObj = new Captcha();;
+		RequestDispatcher rd;
+		if(captchaObj.validateCaptcha(fruit) ){//image name is stored as actual answer
+			rd=request.getRequestDispatcher("/ComplaintReceived.jsp");
+			rd.forward(request, response);
+		}else{
+			rd=request.getRequestDispatcher("/Error.jsp");
+			rd.forward(request, response);
+		}
 
 
 	}

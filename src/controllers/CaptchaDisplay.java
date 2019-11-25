@@ -31,25 +31,11 @@ public class CaptchaDisplay extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		Captcha obj=new Captcha();
-		String imgName= obj.displayRandomCaptcha();
-
-		//Here we will be displaying the image
 		response.setContentType("image/jpeg");
 		ServletOutputStream out = response.getOutputStream();
-		FileInputStream fin = new FileInputStream(imgName);
-		BufferedInputStream bin = new BufferedInputStream(fin);
-		BufferedOutputStream bout = new BufferedOutputStream(out);
-
-		int ch =0; ;
-		while((ch=bin.read())!=-1)
-		{
-			bout.write(ch);
-		}
-
-		bin.close();
-		fin.close();
-		bout.close();
+		Captcha obj=new Captcha();
+		//Here we will be displaying the image
+	 	obj.displayRandomCaptcha(out);
 		out.close();
 
 	}
