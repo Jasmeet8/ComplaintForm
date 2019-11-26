@@ -29,20 +29,18 @@ public class ComplaintController extends HttpServlet {
 
 		String fruit=request.getParameter("fruit");
 		Complaint obj=new Complaint(name, email,phone, complaint);
-		//Complaint object created and dataanswer passed
-		SessionBean bean=new SessionBean();
-		bean.setAnswerText(fruit);
-		request.setAttribute("bean",bean);
-
+		//Complaint object created and data answer passed
+		request.setAttribute("complaint",obj);
 
 		//get captcha from  session,
-		Captcha captchaObj = new Captcha();;
+		Captcha captchaObj =(Captcha)request.getAttribute("captcha");
 		RequestDispatcher rd;
 		if(captchaObj.validateCaptcha(fruit) ){//image name is stored as actual answer
 			rd=request.getRequestDispatcher("/ComplaintReceived.jsp");
 			rd.forward(request, response);
+
 		}else{
-			rd=request.getRequestDispatcher("/Error.jsp");
+			rd=request.getRequestDispatcher("/Complaint.jsp");
 			rd.forward(request, response);
 		}
 

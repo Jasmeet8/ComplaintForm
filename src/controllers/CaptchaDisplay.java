@@ -31,11 +31,13 @@ public class CaptchaDisplay extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		response.setContentType("image/jpeg");
-		ServletOutputStream out = response.getOutputStream();
-		Captcha obj=new Captcha();
+		Captcha obj=(Captcha)(request.getAttribute("captcha"));
+		//get servlet context from session bean
+		obj.selectRandomCaptcha();
 		//Here we will be displaying the image
-	 	obj.displayRandomCaptcha(out);
+		response.setContentType(obj.getMimeType());
+		ServletOutputStream out = response.getOutputStream();
+		obj.getImageData(out);
 		out.close();
 
 	}

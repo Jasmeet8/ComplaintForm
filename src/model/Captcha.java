@@ -11,7 +11,10 @@ import java.util.Random;
 public class Captcha {
 
     String imgName;
-
+    String mime;
+    public  String getMimeType(){
+        return mime;
+    }
     /**
      * To Validate the answer for captcha
      * @param actualAnswer
@@ -26,16 +29,18 @@ public class Captcha {
     /**
      * To display a random image from a file location
      */
-    public void displayRandomCaptcha(ServletOutputStream out){
-        File file=new File("file_location");
+    public void selectRandomCaptcha() {     //select random
+        File file = new File("C:\\Users\\username\\Desktop\\CaptchaImages");
         //file location has 3 images, so retreive them in an arraylist
         ArrayList<String> ImgFiles = new ArrayList<>();
         for (final File fileEntry : file.listFiles()) {
             ImgFiles.add(fileEntry.getName());
         }
         Random rand = new Random();
-        imgName=ImgFiles.get(rand.nextInt(ImgFiles.size()));
-        getImageData(out);
+        imgName = ImgFiles.get(rand.nextInt(ImgFiles.size()));
+        //set mime type
+        mime="image/jpeg";
+
     }
 
     /**
